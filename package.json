@@ -2,10 +2,10 @@
   "license": "0BSD",
   "main": "index.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
+    "start": "npx expo start --offline",
+    "android": "npx expo start --offline --android",
+    "ios": "npx expo start --offline --ios",
+    "web": "npx expo start --offline --web",
     "web-build": "npx expo export --platform web"
   },
   "dependencies": {
