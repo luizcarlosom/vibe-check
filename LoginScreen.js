@@ -48,10 +48,10 @@ export default function LoginScreen({ navigation }) {
         </TouchableOpacity>
 
         <View style={styles.footer}>
-          <Text style={styles.footerText}>Ainda não possui cadastro?</Text>
-          <TouchableOpacity>
-            <Text style={styles.createAccount}>Criar conta</Text>
-          </TouchableOpacity>
+            <Text style={styles.footerText}>Ainda não possui cadastro?</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
+                <Text style={styles.createAccount}>Criar conta</Text>
+            </TouchableOpacity>
         </View>
 
         <Text style={styles.logo}>VibeCheck</Text>

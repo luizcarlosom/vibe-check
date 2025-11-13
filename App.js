@@ -3,6 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import VibeCheck from './VibeCheck';
 import LoginScreen from './LoginScreen'; 
+import CadastroScreen from './CadastroScreen';
+import ProfessorRegisterScreen from './ProfessorRegisterScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,6 +14,8 @@ export default function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={VibeCheck} />
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Cadastro" component={CadastroScreen} />
+        <Stack.Screen name="ProfessorRegister" component={ProfessorRegisterScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

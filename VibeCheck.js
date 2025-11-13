@@ -39,9 +39,11 @@ export default function VibeCheck({ navigation }) {
             <Text style={styles.primaryButtonText}>Entrar</Text>
         </TouchableOpacity>
 
-          <TouchableOpacity>
+        <TouchableOpacity
+            onPress={() => navigation.navigate('Cadastro')}
+        >
             <Text style={styles.secondaryButtonText}>Criar conta</Text>
-          </TouchableOpacity>
+        </TouchableOpacity>
 
           <Text style={styles.footerText}>VibeCheck</Text>
         </ScrollView>
