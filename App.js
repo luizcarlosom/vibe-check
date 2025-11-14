@@ -5,8 +5,8 @@ import VibeCheck from './VibeCheck';
 import LoginScreen from './LoginScreen'; 
 import CadastroScreen from './CadastroScreen';
 import ProfessorRegisterScreen from './ProfessorRegisterScreen';
-import AlunoHome from './AlunoHome';
-import AlunoEmocional from './AlunoEmocional';
+import AlunoHome from './AlunoHomeScreen';
+import AlunoEmocional from './AlunoEmocionalScreen';
 
 const Stack = createNativeStackNavigator();
 
