@@ -5,6 +5,8 @@ import VibeCheck from './VibeCheck';
 import LoginScreen from './LoginScreen'; 
 import CadastroScreen from './CadastroScreen';
 import ProfessorRegisterScreen from './ProfessorRegisterScreen';
+import AlunoHome from './AlunoHomeScreen';
+import AlunoEmocional from './AlunoEmocionalScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +18,8 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Cadastro" component={CadastroScreen} />
         <Stack.Screen name="ProfessorRegister" component={ProfessorRegisterScreen} />
+        <Stack.Screen name="AlunoHome" component={AlunoHome} />
+        <Stack.Screen name="AlunoEmocional" component={AlunoEmocional} />
       </Stack.Navigator>
     </NavigationContainer>
   );
