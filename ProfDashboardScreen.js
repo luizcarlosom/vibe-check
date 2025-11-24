@@ -29,7 +29,7 @@ export default function ProfDashboardScreen({ navigation }) {
   ]
 
   return (
-    <ProfessorLayout>
+    <ProfessorLayout activeScreen="Dashboard">
       
       <Text style={styles.pageTitle}>Dashboard Geral</Text>
 

@@ -1,13 +1,13 @@
-import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
 import ProfessorIcon from "./assets/professor.png";
 
-export default function ProfessorLayout({ children }) {
+export default function ProfessorLayout({ children, activeScreen }) {
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-
       {/* -------- TOP BAR -------- */}
       <View style={styles.topBar}>
         <Image source={ProfessorIcon} style={styles.mascote} />
@@ -25,9 +25,56 @@ export default function ProfessorLayout({ children }) {
 
       {/* -------- BOTTOM TAB -------- */}
       <View style={styles.bottomTab}>
-          <Text style={styles.tabText}>
-            VibeCheck
+        <TouchableOpacity 
+          style={styles.tabItem}
+          onPress={() => navigation.navigate('ProfDashboard')}
+        >
+          <Ionicons 
+            name={activeScreen === 'Dashboard' ? 'stats-chart' : 'stats-chart-outline'}
+            size={24} 
+            color={activeScreen === 'Dashboard' ? '#4A2B6A' : '#888'} 
+          />
+          <Text style={[
+            styles.tabText,
+            activeScreen === 'Dashboard' && styles.tabTextActive
+          ]}>
+            Dashboard
           </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.tabItem}
+          onPress={() => navigation.navigate('CheckInScreen', { mock: true })}
+        >
+          <Ionicons 
+            name={activeScreen === 'CheckIn' ? 'checkmark-circle' : 'checkmark-circle-outline'}
+            size={24} 
+            color={activeScreen === 'CheckIn' ? '#4A2B6A' : '#888'} 
+          />
+          <Text style={[
+            styles.tabText,
+            activeScreen === 'CheckIn' && styles.tabTextActive
+          ]}>
+            Check-in
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.tabItem}
+          onPress={() => navigation.navigate('CheckOutScreen', { mock: true })}
+        >
+          <Ionicons 
+            name={activeScreen === 'CheckOut' ? 'exit' : 'exit-outline'}
+            size={24} 
+            color={activeScreen === 'CheckOut' ? '#4A2B6A' : '#888'} 
+          />
+          <Text style={[
+            styles.tabText,
+            activeScreen === 'CheckOut' && styles.tabTextActive
+          ]}>
+            Check-out
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -100,10 +147,14 @@ const styles = StyleSheet.create({
   },
   tabItem: {
     alignItems: "center",
+    justifyContent: "center",
   },
   tabText: {
     marginTop: 4,
-    fontSize: 16,
+    fontSize: 12,
+    color: "#888",
+  },
+  tabTextActive: {
     color: "#4A2B6A",
     fontWeight: "700",
   },
