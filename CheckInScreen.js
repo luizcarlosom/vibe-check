@@ -163,7 +163,7 @@ export default function CheckInScreen({ navigation, route }) {
       <Modal
         visible={showCodeModal}
         transparent={true}
-        animationType="fade"
+        animationType="slide"
         onRequestClose={() => setShowCodeModal(false)}
       >
         <View style={styles.modalOverlay}>
