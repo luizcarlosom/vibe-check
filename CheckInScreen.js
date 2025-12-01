@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList, Image, Modal, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList, Image, Alert, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ProfessorIcon from "./assets/professor.png";
 
@@ -14,6 +14,13 @@ export default function CheckInScreen({ navigation, route }) {
   const [selectedTurma, setSelectedTurma] = useState(null);
   const [showCodeModal, setShowCodeModal] = useState(false);
   const [codigoGerado, setCodigoGerado] = useState('');
+  const [modalKey, setModalKey] = useState(0);
+
+  // Debug: verificar se o estado está mudando
+  useEffect(() => {
+    console.log('showCodeModal:', showCodeModal);
+    console.log('codigoGerado:', codigoGerado);
+  }, [showCodeModal, codigoGerado]);
 
   // Filtrar turmas baseado no input
   const turmasFiltradas = turmas.filter(turma => 
@@ -63,8 +70,10 @@ export default function CheckInScreen({ navigation, route }) {
       return;
     }
     
-    const codigo = gerarCodigo();
-    setCodigoGerado(codigo);
+    const novoCodigo = String(Math.floor(10000 + Math.random() * 90000));
+    console.log('Gerando código:', novoCodigo);
+    setCodigoGerado(novoCodigo);
+    setModalKey(prev => prev + 1);
     setShowCodeModal(true);
   };
 
@@ -159,35 +168,6 @@ export default function CheckInScreen({ navigation, route }) {
         </TouchableOpacity>
       </View>
 
-      {/* MODAL COM CÓDIGO */}
-      <Modal
-        visible={showCodeModal}
-        transparent={true}
-        animationType="slide"
-        onRequestClose={() => setShowCodeModal(false)}
-      >
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContent}>
-            <Ionicons name="checkmark-circle" size={60} color="#4A2B6A" />
-            <Text style={styles.modalTitle}>Check-in Liberado!</Text>
-            <Text style={styles.modalSubtitle}>Turma: {selectedTurma}</Text>
-            <View style={styles.codigoContainer}>
-              <Text style={styles.codigoLabel}>Código de acesso:</Text>
-              <Text style={styles.codigoText}>{codigoGerado}</Text>
-            </View>
-            <TouchableOpacity 
-              style={styles.modalButton}
-              onPress={() => {
-                setShowCodeModal(false);
-                setSelectedTurma(null);
-              }}
-            >
-              <Text style={styles.modalButtonText}>Fechar</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-
       {/* BOTTOM TAB */}
       <View style={styles.bottomTab}>
         <TouchableOpacity 
@@ -211,6 +191,30 @@ export default function CheckInScreen({ navigation, route }) {
           <Text style={styles.tabText}>Check-out</Text>
         </TouchableOpacity>
       </View>
+
+      {/* OVERLAY CUSTOMIZADO */}
+      {showCodeModal && (
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Ionicons name="checkmark-circle" size={60} color="#4A2B6A" />
+            <Text style={styles.modalTitle}>Check-in Liberado!</Text>
+            <Text style={styles.modalSubtitle}>Turma: {selectedTurma}</Text>
+            <View style={styles.codigoContainer}>
+              <Text style={styles.codigoLabel}>Código de acesso:</Text>
+              <Text style={styles.codigoText}>{codigoGerado}</Text>
+            </View>
+            <TouchableOpacity 
+              style={styles.modalButton}
+              onPress={() => {
+                setShowCodeModal(false);
+                setSelectedTurma(null);
+              }}
+            >
+              <Text style={styles.modalButtonText}>Fechar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
     </View>
   );
 }
@@ -405,10 +409,15 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   modalOverlay: {
-    flex: 1,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: 1000,
   },
   modalContent: {
     backgroundColor: '#fff',
