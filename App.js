@@ -12,6 +12,7 @@ import AlunoCadPessoalScreen from './AlunoCadPessoalScreen';
 import ProfDashboardScreen from './ProfDashboardScreen';
 import CheckInScreen from './CheckInScreen';
 import CheckOutScreen from './CheckOutScreen';
+import VibeCheckFinalizada from './VibeCheckFinalizadaScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,7 @@ export default function App() {
         <Stack.Screen name="ProfDashboard" component={ProfDashboardScreen} />
         <Stack.Screen name="CheckInScreen" component={CheckInScreen} />
         <Stack.Screen name="CheckOutScreen" component={CheckOutScreen} />
+        <Stack.Screen name="VibeCheckFinalizada" component={VibeCheckFinalizada} />
       </Stack.Navigator>
     </NavigationContainer>
   );

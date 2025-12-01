@@ -114,6 +114,7 @@ export default function Emocional({ navigation }) {
           !selectedEmotion && styles.sendButtonDisabled
         ]}
         disabled={!selectedEmotion}
+        onPress={() => navigation.navigate("VibeCheckFinalizada")}
       >
         <Text style={styles.sendButtonText}>Enviar {selectedTab === "checkin" ? "Check-in" : "Check-out"}</Text>
       </TouchableOpacity>
