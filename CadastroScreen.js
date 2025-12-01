@@ -17,7 +17,7 @@ export default function CadastroScreen({ navigation }) {
     if (selectedRole === 'professor') {
       navigation.navigate('ProfessorRegister');
     } else if (selectedRole === 'estudante') {
-      navigation.navigate('Login'); // depois você pode mudar para 'EstudanteRegister'
+      navigation.navigate('AlunoCadastroPessoal'); // depois você pode mudar para 'EstudanteRegister'
     }
   };
 

@@ -10,6 +10,10 @@ export default function ProfessorRegisterScreen() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const handleNext = () => {
+    navigation.navigate('ProfDashboard'); 
+  };
+
   return (
     <ImageBackground
       source={require('./assets/bg-gradient.png')} // ou use um LinearGradient se preferir
@@ -73,7 +77,7 @@ export default function ProfessorRegisterScreen() {
       </View>
 
       {/* Botão */}
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleNext}>
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
 
